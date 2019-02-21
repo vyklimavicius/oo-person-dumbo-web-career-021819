@@ -2,8 +2,8 @@
 class Person
   def initialize(name) #parameter CALLBACK
     @name = name #instance variable
-    # @bank_account = 25
-    # @happy_points = 8
+    @bank_account = 25
+    @happy_points = 8
     @hygiene_points = 8
   end
 
@@ -12,23 +12,35 @@ class Person
   end
 
   def happiness #getter
-     @happy_points = 8
+     @happy_points
   end
 
   def happiness=(new_points)
     if ((new_points >= 0) && (new_points <= 10))
       @happy_points = new_points
+    elsif (new_points > 10)
+      @happy_points = 10
+    elsif  (new_points < 0)
+      @happy_points = 0
     end
   end
 
-  def hygiene_points=(new_points)
+  def hygiene
+    @hygiene_points
+  end
+
+  def hygiene=(new_points)
     if ((new_points >= 0) && (new_points <= 10))
       @hygiene_points = new_points
+    elsif (new_points > 10)
+      @hygiene_points = 10
+    elsif  (new_points < 0)
+      @hygiene_points = 0
     end
   end
 
   def bank_account
-    @bank_account = 25
+    @bank_account
   end
 
   def bank_account=(new_funds)
@@ -37,49 +49,52 @@ class Person
 
   def happy?
     if @happy_points > 7
-      puts true
+       true
     else
-      puts false
+      false
     end
   end
 
 
   def clean?
     if @hygiene_points > 7
-      puts true
+      true
     else
-      puts false
+      false
     end
   end
 
   def get_paid(salary_amount)
     @bank_account += salary_amount
-    "all about benjamins"
+    "all about the benjamins"
   end
 
   def take_bath
-    @hygiene_points += 4
-    "♪ Rub-a-dub just relaxing in the tub ♫"
+     self.hygiene += 4
+      "♪ Rub-a-dub just relaxing in the tub ♫"
   end
 
   def work_out
-    @happy_points += 2
+    self.happiness += 2
+    self.hygiene -= 3
     "♪ another one bites the dust ♫"
   end
 
   def call_friend(instance)
+    self.happiness += 3
+    instance.happiness += 3
     "Hi #{instance.name}! It\'s\ #{@name}. How are you?"
   end
 
   def start_conversation(person_start,topic)
     case topic
      when "politics"
-       @happy_points -= 1
-       person_start.happy_points -= 1
+       self.happiness -= 2
+       person_start.happiness -= 2
        "blah blah partisan blah lobbyist"
      when "weather"
-       @happy_points += 1
-       person_start.happy_points += 1
+       self.happiness += 1
+       person_start.happiness += 1
        "blah blah sun blah rain"
      else
        "blah blah blah blah blah"
@@ -88,8 +103,19 @@ class Person
 end
 
 
-stella = Person.new("Stella")
-p stella.happiness = 1
+penelope = Person.new("Stella")
+felix = Person.new("Felix")
+# new_happiness = stella.happiness
+# p new_happiness
+# p stella.happiness +=1
+# p new_happiness
+# p penelope.hygiene = (9)
+# p penelope.take_bath
+p penelope.start_conversation(felix,"weather")
+p penelope
+p felix
+
+
 # felix = Person.new("Felix")
 # p ryan.get_paid(5)
 # p ryan.take_bath(2)
