@@ -103,17 +103,17 @@ class Person
 end
 
 
-penelope = Person.new("Stella")
-felix = Person.new("Felix")
+# penelope = Person.new("Stella")
+# felix = Person.new("Felix")
 # new_happiness = stella.happiness
 # p new_happiness
 # p stella.happiness +=1
 # p new_happiness
 # p penelope.hygiene = (9)
 # p penelope.take_bath
-p penelope.start_conversation(felix,"weather")
-p penelope
-p felix
+# p penelope.start_conversation(felix,"weather")
+# p penelope
+# p felix
 
 
 # felix = Person.new("Felix")
